@@ -287,31 +287,30 @@ open class FlexibleHeightBar: UIView {
     private func apply(floorLayoutAttributes: FlexibleHeightBarSubviewLayoutAttributes, ceilingLayoutAttributes: FlexibleHeightBarSubviewLayoutAttributes, toSubview subview: UIView, withFloorProgress floorProgress: CGFloat, ceilingProgress: CGFloat) {
         
         let relativeProgress = calculateRelativeProgress(withFloorProgress: floorProgress, ceilingProgress: ceilingProgress)
-        
+
+        // Interpolate CA3DTransform
+        var transform3D = CATransform3D()
+        transform3D.m11 = interpolate(from: floorLayoutAttributes.transform3D.m11, to: ceilingLayoutAttributes.transform3D.m11, withProgress: relativeProgress)
+        transform3D.m12 = interpolate(from: floorLayoutAttributes.transform3D.m12, to: ceilingLayoutAttributes.transform3D.m12, withProgress: relativeProgress)
+        transform3D.m13 = interpolate(from: floorLayoutAttributes.transform3D.m13, to: ceilingLayoutAttributes.transform3D.m13, withProgress: relativeProgress)
+        transform3D.m14 = interpolate(from: floorLayoutAttributes.transform3D.m14, to: ceilingLayoutAttributes.transform3D.m14, withProgress: relativeProgress)
+        transform3D.m21 = interpolate(from: floorLayoutAttributes.transform3D.m21, to: ceilingLayoutAttributes.transform3D.m21, withProgress: relativeProgress)
+        transform3D.m22 = interpolate(from: floorLayoutAttributes.transform3D.m22, to: ceilingLayoutAttributes.transform3D.m22, withProgress: relativeProgress)
+        transform3D.m23 = interpolate(from: floorLayoutAttributes.transform3D.m23, to: ceilingLayoutAttributes.transform3D.m23, withProgress: relativeProgress)
+        transform3D.m24 = interpolate(from: floorLayoutAttributes.transform3D.m24, to: ceilingLayoutAttributes.transform3D.m24, withProgress: relativeProgress)
+        transform3D.m31 = interpolate(from: floorLayoutAttributes.transform3D.m31, to: ceilingLayoutAttributes.transform3D.m31, withProgress: relativeProgress)
+        transform3D.m32 = interpolate(from: floorLayoutAttributes.transform3D.m32, to: ceilingLayoutAttributes.transform3D.m32, withProgress: relativeProgress)
+        transform3D.m33 = interpolate(from: floorLayoutAttributes.transform3D.m33, to: ceilingLayoutAttributes.transform3D.m33, withProgress: relativeProgress)
+        transform3D.m34 = interpolate(from: floorLayoutAttributes.transform3D.m34, to: ceilingLayoutAttributes.transform3D.m34, withProgress: relativeProgress)
+        transform3D.m41 = interpolate(from: floorLayoutAttributes.transform3D.m41, to: ceilingLayoutAttributes.transform3D.m41, withProgress: relativeProgress)
+        transform3D.m42 = interpolate(from: floorLayoutAttributes.transform3D.m42, to: ceilingLayoutAttributes.transform3D.m42, withProgress: relativeProgress)
+        transform3D.m43 = interpolate(from: floorLayoutAttributes.transform3D.m43, to: ceilingLayoutAttributes.transform3D.m43, withProgress: relativeProgress)
+        transform3D.m44 = interpolate(from: floorLayoutAttributes.transform3D.m44, to: ceilingLayoutAttributes.transform3D.m44, withProgress: relativeProgress)
+
         if useAutoLayout {
-            
+            subview.layer.transform = transform3D
             subview.layer.cornerRadius = interpolate(from: floorLayoutAttributes.cornerRadius, to: ceilingLayoutAttributes.cornerRadius, withProgress: relativeProgress)
         } else {
-            
-            // Interpolate CA3DTransform
-            var transform3D = CATransform3D()
-            transform3D.m11 = interpolate(from: floorLayoutAttributes.transform3D.m11, to: ceilingLayoutAttributes.transform3D.m11, withProgress: relativeProgress)
-            transform3D.m12 = interpolate(from: floorLayoutAttributes.transform3D.m12, to: ceilingLayoutAttributes.transform3D.m12, withProgress: relativeProgress)
-            transform3D.m13 = interpolate(from: floorLayoutAttributes.transform3D.m13, to: ceilingLayoutAttributes.transform3D.m13, withProgress: relativeProgress)
-            transform3D.m14 = interpolate(from: floorLayoutAttributes.transform3D.m14, to: ceilingLayoutAttributes.transform3D.m14, withProgress: relativeProgress)
-            transform3D.m21 = interpolate(from: floorLayoutAttributes.transform3D.m21, to: ceilingLayoutAttributes.transform3D.m21, withProgress: relativeProgress)
-            transform3D.m22 = interpolate(from: floorLayoutAttributes.transform3D.m22, to: ceilingLayoutAttributes.transform3D.m22, withProgress: relativeProgress)
-            transform3D.m23 = interpolate(from: floorLayoutAttributes.transform3D.m23, to: ceilingLayoutAttributes.transform3D.m23, withProgress: relativeProgress)
-            transform3D.m24 = interpolate(from: floorLayoutAttributes.transform3D.m24, to: ceilingLayoutAttributes.transform3D.m24, withProgress: relativeProgress)
-            transform3D.m31 = interpolate(from: floorLayoutAttributes.transform3D.m31, to: ceilingLayoutAttributes.transform3D.m31, withProgress: relativeProgress)
-            transform3D.m32 = interpolate(from: floorLayoutAttributes.transform3D.m32, to: ceilingLayoutAttributes.transform3D.m32, withProgress: relativeProgress)
-            transform3D.m33 = interpolate(from: floorLayoutAttributes.transform3D.m33, to: ceilingLayoutAttributes.transform3D.m33, withProgress: relativeProgress)
-            transform3D.m34 = interpolate(from: floorLayoutAttributes.transform3D.m34, to: ceilingLayoutAttributes.transform3D.m34, withProgress: relativeProgress)
-            transform3D.m41 = interpolate(from: floorLayoutAttributes.transform3D.m41, to: ceilingLayoutAttributes.transform3D.m41, withProgress: relativeProgress)
-            transform3D.m42 = interpolate(from: floorLayoutAttributes.transform3D.m42, to: ceilingLayoutAttributes.transform3D.m42, withProgress: relativeProgress)
-            transform3D.m43 = interpolate(from: floorLayoutAttributes.transform3D.m43, to: ceilingLayoutAttributes.transform3D.m43, withProgress: relativeProgress)
-            transform3D.m44 = interpolate(from: floorLayoutAttributes.transform3D.m44, to: ceilingLayoutAttributes.transform3D.m44, withProgress: relativeProgress)
-            
             // Interpolate frame
             let frame: CGRect
             
