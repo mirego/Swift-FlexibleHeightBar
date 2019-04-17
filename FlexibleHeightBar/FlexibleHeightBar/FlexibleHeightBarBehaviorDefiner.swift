@@ -121,7 +121,7 @@ open class FlexibleHeightBarBehaviorDefiner: NSObject, UIScrollViewDelegate {
                     
                     if progressPercent >= CGFloat(existingRange.location) &&
                         progressPercent <= CGFloat(existingRange.location + existingRange.length) {
-                        snapPosition = CGFloat(object)
+                        snapPosition = CGFloat(truncating: object)
                     }
                 }
                 
@@ -153,7 +153,7 @@ open class FlexibleHeightBarBehaviorDefiner: NSObject, UIScrollViewDelegate {
     
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let flexibleHeightBar = flexibleHeightBar {
-            scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(flexibleHeightBar.bounds.height, scrollView.scrollIndicatorInsets.left, scrollView.scrollIndicatorInsets.bottom, scrollView.scrollIndicatorInsets.right)
+            scrollView.scrollIndicatorInsets = UIEdgeInsets(top: flexibleHeightBar.bounds.height, left: scrollView.scrollIndicatorInsets.left, bottom: scrollView.scrollIndicatorInsets.bottom, right: scrollView.scrollIndicatorInsets.right)
         }
     }
 }
