@@ -6,5 +6,5 @@ Pod::Spec.new do |s|
   s.homepage = 'http://open.mirego.com/'
   s.authors  = { 'Mirego, Inc.' => 'info@mirego.com' }
   s.source   = { :git => 'git@github.com:mirego/Swift-FlexibleHeightBar.git', :tag => s.version.to_s }
-  s.source_files = 'FlexibleHeightBar/**/*.swift'
+  s.source_files = 'FlexibleHeightBar/FlexibleHeightBar/**/*.swift'
 end
